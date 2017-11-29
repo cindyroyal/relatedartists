@@ -215,12 +215,12 @@ option = select.options[select.selectedIndex].text;
 document.getElementById("artist").innerHTML= option;
 
 //need this to convert value of artist to executable code to reference the related band's array
-band = window[artist];
+artist = window[artist];
     document.getElementById("related").innerHTML = "";
     //for loop reads the json and returns the popularity value if value from form equals value in json
-    for (i=0; i<band.length; i++) {
+    for (i=0; i<artist.length; i++) {
   // use the += here to append to the element for each iteration of the loop, rather than replace
-  document.getElementById("related").innerHTML += band[i].name + " " + band[i].popularity + "<br/>" ;
+  document.getElementById("related").innerHTML += artist[i].name + " " + artist[i].popularity + "<br/>" ;
  
     } // end internal for
  
