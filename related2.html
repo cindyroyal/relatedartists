@@ -1,0 +1,63 @@
+<html>
+<head><title>Related Artists App</title></head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="data.json"></script>
+
+<body>
+
+<p>Pick a Texas band to see related artists.</p>
+<form  id="form1" action=" "/>
+
+
+
+<select id="thedropdown">
+  <option value="0">Choose:</option>
+  <option value="old97">Old 97's</option>
+  <option value="spoon">Spoon</option>
+  <option value="bob">Bob Schneider</option>
+</select>
+
+</form>
+
+<p>Artist: <span id="artist"></span></p>
+<p>Related Artists and Popularity Index:</p> 
+<table id="related" width="300">
+</table>
+
+
+<script>
+//function that executes when you submit the form
+document.getElementById("form1").onchange=function() {
+	  
+// assigns value in dropdown to a variable
+artist = document.getElementById("thedropdown").value;
+if (artist != 0) {
+//changes the DOM element for artist to form text of selection
+select = document.getElementById("thedropdown");
+option = select.options[select.selectedIndex].text;
+document.getElementById("artist").innerHTML= option;
+
+//converts variable to executable code
+artist = window[artist];
+
+// parses the artist names json from data.json to artist
+//when creating json, be careful for stray quotes or apostrophes in names; also line and paragraph breaks must be removed.
+artist = JSON.parse(artist);
+
+    $("#related").html("");
+    //for loop reads the json and returns the popularity value if value from form equals value in json
+    for (i=0; i<artist.length; i++) {
+  
+    $("#related").append("<tr><td>" + artist[i].name + "</td><td>" + artist[i].popularity + "</td></tr>" ) ;
+    } // end internal for
+ 
+  
+} // end starting if
+return false; //need this so page doesn't refresh
+}//end function
+</script>
+
+
+
+</body>
+</html>
